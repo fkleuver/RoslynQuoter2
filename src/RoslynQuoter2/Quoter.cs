@@ -246,7 +246,7 @@ public class Quoter
             return QuoteList((IEnumerable)value, property.Name);
         }
 
-        if (
+        if (propertyType.GetTypeInfo().IsGenericType &&
             (propertyType.GetGenericTypeDefinition() == typeof(SyntaxList<>) ||
              propertyType.GetGenericTypeDefinition() == typeof(SeparatedSyntaxList<>)))
         {
