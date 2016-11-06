@@ -37,6 +37,10 @@ namespace RoslynQuoter2
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseFileServer();
+
+            app.UseStaticFiles();
+
             app.UseMvc();
         }
     }
