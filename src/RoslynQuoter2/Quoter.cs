@@ -44,6 +44,7 @@ public class Quoter
 
     private readonly ScriptOptions options = ScriptOptions.Default
         .AddReferences(
+            typeof(object).GetTypeInfo().Assembly,
             typeof(SyntaxNode).GetTypeInfo().Assembly,
             typeof(CSharpSyntaxNode).GetTypeInfo().Assembly)
         .AddImports(
@@ -289,8 +290,8 @@ public class Quoter
 
         string methodName = SyntaxFactoryMethod("List");
         string listType = null;
-        var propertyType = syntaxList.GetType().GetTypeInfo();
-        if (propertyType.IsGenericType)
+        var propertyType = syntaxList.GetType();
+        if (propertyType.GetTypeInfo().IsGenericType)
         {
             var methodType = propertyType.GetGenericArguments()[0].Name;
             listType = methodType;
